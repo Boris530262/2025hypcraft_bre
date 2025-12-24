@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPECASE - Prijava</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .logo-header {
+            background-color: black;
+            padding: 15px 0;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 12px;
+            background-color: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <header class="logo-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-start">
+                    <img src="logo.png" alt="HYPE CASE Logo" style="width: 150px;">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">HYPECASE</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Početna</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="naruci.html">Naruči</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">O nama</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="login-container">
+            <h2 class="text-center mb-4">Administracija</h2>
+            <p class="text-center text-muted small">Pristup listi narudžbi</p>
+            
+            <form id="adminLoginForm">
+                <div class="mb-3">
+                    <label for="password" class="form-label">Lozinka</label>
+                    <input type="password" class="form-control" id="password" placeholder="Unesite lozinku..." required>
+                </div>
+                <button type="submit" class="btn btn-dark w-100">Prijavi se</button>
+            </form>
+            
+            <div id="errorMessage" class="text-danger text-center mt-3" style="display: none;">
+                Pogrešna lozinka! Pokušajte ponovno.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const TAJNA_LOZINKA = "glavni123";
+
+        document.getElementById('adminLoginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const unesenaVrijednost = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            if (unesenaVrijednost === TAJNA_LOZINKA) {
+                // Ako je popis_narudzbi.html u ISTOM folderu kao i ovaj file:
+                window.location.href = "popis_narudzbi.html";
+            } else {
+                errorDiv.style.display = "block";
+                document.getElementById('password').value = "";
+                document.getElementById('password').focus();
+            }
+        });
+    </script>
+</body>
+
+</html>

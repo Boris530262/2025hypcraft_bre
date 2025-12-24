@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPECASE - Naruči Više</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .logo-header { background-color: black; padding: 15px 0; }
+        .card { transition: 0.3s; border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1); position: relative; }
+        .card.selected { border: 3px solid #0d6efd; background-color: #f0f7ff; }
+        .badge-number {
+            position: absolute; top: 10px; right: 10px;
+            background-color: #ffc107; color: black;
+            font-weight: bold; padding: 5px 10px; border-radius: 50%;
+        }
+        #kosarica-float {
+            position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+            display: none; /* Prikazuje se tek kad se nešto odabere */
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <header class="logo-header">
+        <div class="container text-start">
+            <img src="logo.png" alt="HYPE CASE Logo" style="width: 150px;">
+        </div>
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">HYPECASE</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Početna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="naruci.html">Naruči</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Kontakt</a>    
+                    </li>
+                </ul>
+                
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Pretraži..." aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Traži</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">ODABERI SVOJE MASKICE</h2>
+            <p>Možeš odabrati više modela odjednom klikom na "Dodaj".</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100" id="card-001">
+                    <span class="badge-number">#001</span>
+                    <img src="https://via.placeholder.com/300x200?text=Clear+Case" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5>Clear Crystal</h5>
+                        <button class="btn btn-outline-dark w-100" onclick="toggleMask('Clear Crystal', '001')">Dodaj / Ukloni</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100" id="card-002">
+                    <span class="badge-number">#002</span>
+                    <img src="https://via.placeholder.com/300x200?text=Carbon+Case" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5>Midnight Carbon</h5>
+                        <button class="btn btn-outline-dark w-100" onclick="toggleMask('Midnight Carbon', '002')">Dodaj / Ukloni</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100" id="card-003">
+                    <span class="badge-number">#003</span>
+                    <img src="https://via.placeholder.com/300x200?text=Silicone+Case" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5>Ocean Blue</h5>
+                        <button class="btn btn-outline-dark w-100" onclick="toggleMask('Ocean Blue', '003')">Dodaj / Ukloni</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100" id="card-004">
+                    <span class="badge-number">#004</span>
+                    <img src="https://via.placeholder.com/300x200?text=Armor+Case" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5>Iron Armor</h5>
+                        <button class="btn btn-outline-dark w-100" onclick="toggleMask('Iron Armor', '004')">Dodaj / Ukloni</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100" id="card-105">
+                    <span class="badge-number">#005</span>
+                    <img src="https://via.placeholder.com/300x200?text=Leather+Case" class="card-img-top">
+                    <div class="card-body text-center">
+                        <h5>Urban Leather</h5>
+                        <button class="btn btn-outline-dark w-100" onclick="toggleMask('Urban Leather', '105')">Dodaj / Ukloni</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5" id="formSection">
+        <div class="row justify-content-center">
+            <div class="col-md-8 bg-white p-4 rounded shadow">
+                <h3 class="text-center mb-4">Tvoja Narudžba</h3>
+                <form id="orderForm">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Odabrane maskice:</label>
+                        <div id="odabrano-lista" class="p-3 border rounded bg-light min-vh-10">
+                            <span class="text-muted">Nije odabrana nijedna maskica...</span>
+                        </div>
+                        <input type="hidden" id="maskNamesHidden" required>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Ime i Prezime</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Telefon za kontakt</label>
+                            <input type="tel" class="form-control" id="phoneNumber" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Model mobitela (npr. iPhone 14, Samsung S22...)</label>
+                        <input type="text" class="form-control" id="phoneModel" placeholder="Upišite za koji mobitel trebate maskice" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-lg w-100">Pošalji Skupnu Narudžbu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let odabraneMaskice = [];
+
+        function toggleMask(ime, broj) {
+            const index = odabraneMaskice.findIndex(m => m.broj === broj);
+            const card = document.getElementById('card-' + broj);
+
+            if (index === -1) {
+                // Dodaj u listu
+                odabraneMaskice.push({ ime, broj });
+                card.classList.add('selected');
+            } else {
+                // Makni iz liste
+                odabraneMaskice.splice(index, 1);
+                card.classList.remove('selected');
+            }
+
+            osvjeziPrikaz();
+        }
+
+        function osvjeziPrikaz() {
+            const listaDiv = document.getElementById('odabrano-lista');
+            const hiddenInput = document.getElementById('maskNamesHidden');
+
+            if (odabraneMaskice.length === 0) {
+                listaDiv.innerHTML = '<span class="text-muted">Nije odabrana nijedna maskica...</span>';
+                hiddenInput.value = "";
+            } else {
+                listaDiv.innerHTML = odabraneMaskice.map(m => 
+                    `<span class="badge bg-primary me-2 mb-2 p-2">#${m.broj} - ${m.ime}</span>`
+                ).join('');
+                
+                // Spajamo sve brojeve u jedan string za bazu
+                hiddenInput.value = odabraneMaskice.map(m => "#" + m.broj).join(', ');
+            }
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (odabraneMaskice.length === 0) {
+                alert("Molimo odaberite barem jednu maskicu prije narudžbe!");
+                return;
+            }
+
+            const narudzba = {
+                ime: document.getElementById('fullName').value,
+                telefon: document.getElementById('phoneModel').value,
+                brojMaskice: document.getElementById('maskNamesHidden').value, // Svi brojevi npr. "#101, #103"
+                kontakt: document.getElementById('phoneNumber').value
+            };
+
+            let lista = JSON.parse(localStorage.getItem('popisNarudzbi')) || [];
+            lista.push(narudzba);
+            localStorage.setItem('popisNarudzbi', JSON.stringify(lista));
+
+            alert("Uspješno ste naručili " + odabraneMaskice.length + " maskice!");
+            
+            // Reset svega
+            odabraneMaskice = [];
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+            osvjeziPrikaz();
+            this.reset();
+        });
+    </script>
+</body>
+</html>
